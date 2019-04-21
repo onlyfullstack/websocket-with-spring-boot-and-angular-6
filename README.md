@@ -1,5 +1,3 @@
-# websocket-with-spring-boot-and-angular-6
-
 # WebSocket With Spring Boot and Angular 6 Tutorial
 
 In this tutorial, we will understand how to write JUnit test cases. We will understand and implement the below topics.
