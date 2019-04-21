@@ -8,11 +8,11 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class WebController {
+public class WebSocketController {
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/hi")
-	public Hello greeting(User user) throws Exception {
-		return new Hello("Hi, " + user.getName() + "!");
+	@MessageMapping("/hello") // endpoint where the client will send messages or events
+	@SendTo("/topic/hi")      // messeging queue endpoint where client will be listening
+	public Hello greeting(User user) {
+		return new Hello("Message from server: Hello " + user.getName());
 	}
 }

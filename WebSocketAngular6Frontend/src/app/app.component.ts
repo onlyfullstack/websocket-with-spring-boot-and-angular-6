@@ -1,38 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as Stomp from '@stomp/stompjs';
 import * as SockJS from 'sockjs-client';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'WebsocketAangular6Frontend';
-  description = 'Angular-WebSocket Demo';
+export class AppComponent implements OnInit{
 
   greetings: string[] = [];
+  
   disabled = true;
+  
   name: string;
+
   private stompClient = null;
 
-  constructor() { }
+  userForm: FormGroup;
 
-  setConnected(connected: boolean) {
-    this.disabled = !connected;
+  constructor(private formBuilder: FormBuilder) { }
 
-    if (connected) {
-      this.greetings = [];
-    }
+  ngOnInit(): void {
+    this.userForm = this.formBuilder.group({
+      userName: ['', Validators.required]
+    });
   }
 
-  connect() {
+  connectToWebsocketWithStomp() {
     const socket = new SockJS('http://localhost:8080/onlyfullstack-stomp-endpoint');
     this.stompClient = Stomp.over(socket);
 
     const _this = this;
     this.stompClient.connect({}, function (frame) {
-      _this.setConnected(true);
+      _this.showUserNameForm(true);
       console.log('Connected: ' + frame);
 
       _this.stompClient.subscribe('/topic/hi', function (hello) {
@@ -46,7 +48,7 @@ export class AppComponent {
       this.stompClient.disconnect();
     }
 
-    this.setConnected(false);
+    this.showUserNameForm(false);
     console.log('Disconnected!');
   }
 
@@ -58,8 +60,23 @@ export class AppComponent {
     );
   }
 
+  submit() {
+    this.stompClient.send(
+      '/onlyfullstack/hello',
+      {},
+      JSON.stringify({ 'name': this.userForm.value.userName })
+    );
+  }
+
   showGreeting(message) {
     this.greetings.push(message);
   }
 
+  showUserNameForm(connected: boolean) {
+    this.disabled = !connected;
+
+    if (connected) {
+      this.greetings = [];
+    }
+  }
 }

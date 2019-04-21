@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "WebsocketAangular6Frontend": {
+    "WebSocketAngular6Frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/WebsocketAangular6Frontend",
+            "outputPath": "dist/WebSocketAngular6Frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "WebsocketAangular6Frontend:build"
+            "browserTarget": "WebSocketAngular6Frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "WebsocketAangular6Frontend:build:production"
+              "browserTarget": "WebSocketAngular6Frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "WebsocketAangular6Frontend:build"
+            "browserTarget": "WebSocketAngular6Frontend:build"
           }
         },
         "test": {
@@ -103,7 +103,7 @@
         }
       }
     },
-    "WebsocketAangular6Frontend-e2e": {
+    "WebSocketAngular6Frontend-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -112,11 +112,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "WebsocketAangular6Frontend:serve"
+            "devServerTarget": "WebSocketAngular6Frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "WebsocketAangular6Frontend:serve:production"
+              "devServerTarget": "WebSocketAngular6Frontend:serve:production"
             }
           }
         },
@@ -132,5 +132,5 @@
       }
     }
   },
-  "defaultProject": "WebsocketAangular6Frontend"
+  "defaultProject": "WebSocketAngular6Frontend"
 }
